@@ -10,5 +10,8 @@ class AudIO:
         audios = []        
         for path in self.paths:
             for file in path.iterdir():
-                audios.append(tuple(rosa.load(file)))
+                try:
+                    audios.append(tuple(rosa.load(file)))
+                except Exception as e:
+                    print(f"Warning: Failed to load {file} in {path}")
         return audios
